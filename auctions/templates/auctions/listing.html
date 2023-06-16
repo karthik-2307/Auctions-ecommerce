@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html"%}
+{% block body %}
+<div>
+{% if is_owner == is_owner1 and not listing.is_closed %}
+<h1 class="tit" style="font-size: 50px;">Welcome back...!</h1>
+{% comment %} <h1>{{is_owner1}}</h1> {% endcomment %}
+{% comment %} <button class="btn btn-danger" style="justify-content:center;text-align: center;"><a style="text-decoration:none;color:white;" href='{% url "close_auction" listing.id %}'>Close Auction</a></button> {% endcomment %}
+{%endif%}
+{%if  listing.is_closed %}
+<h3 class="tit">Sorry the auction is closed</h3>
+<h3 class="tit">Auction Winner is:{{listing.bid.user}}</h3>
+{% endif%}
+</div>
+<div class="container">
+      {% if message %}
+               {% if updated %}
+                  <div class="alert alert-success" role="alert">
+                        {{ message }}
+                  </div> 
+               {% else %}
+                  <div class="alert alert-danger" role="alert">
+                      {{ message }}
+                </div> 
+               {% endif %}
+     {% endif %}
+     <div class="list" >
+<h1 style="color:white">Title:{{listing}}</h1>
+<h3>Description:{{listing.description}}</h3>
+<p id="bid" style=
+'color:white'>Current bid: <span id="price">{{ listing.bid }}</span></p>
+<img src={{listing.url}} width=25% style="border-radius:25px">  
+            </div>
+<br>
+<br>
+{% if user.is_authenticated %}
+{% if not listing.is_closed %}
+{% if is_listing_in_watchlist%}
+<h1>Item is added to the watchlist</h1>
+{% comment %} <a class="btn btn-danger" href="{% url 'remove_watchlist' listing.id %}"> Remove from watchlist </a> {% endcomment %}
+{% else %}
+      {% comment %} <a class="btn btn-primary" href="{% url 'add_watchlist' listing.id %}"> Add to watchlist </a> {% endcomment %}
+{% endif %}
+{% if is_owner == is_owner1 and not listing.is_closed %}
+<button class="btn btn-danger" style="justify-content:center;text-align: center;"><a style="text-decoration:none;color:white;" href='{% url "close_auction" listing.id %}'>Close Auction</a></button>
+{% endif%}
+<form action="{% url 'new_bid' listing.id %}" method="POST">
+      {% csrf_token %}
+      <h3>Add a new bid:</h3>
+      <input class="form-control form-control-lg" type="text" name='bid'placeholder="Enter your bids"style="margin:10px">
+      <button class="btn btn-success" type="submit">SUBMIT</button>
+</form>
+<h3 >Add Comments</h3>
+<form  action="{% url 'comment' listing.id %}" method="POST">
+      {% csrf_token %}
+      <input class="form-control form-control-lg" type="text" name="comment" placeholder="Write Your Comment here" style="margin:10px">
+      <button class="btn btn-success" type="submit">SUBMIT</button>
+</form>
+{%endif%}
+<h3 class="tit" style="font-size: 40px;">Comments</h3>
+<div style="border:2px solid white;margin:40px;	border-radius: 5px;">
+{% for com in comments %}
+      <div class="tit" style="font-size: 20px;	justify-content:left">Writter:{{com.writer}}<br>      
+            <div class="form-group">
+            <p>Comment:-{{com.comment}}</p>
+      </div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock%}

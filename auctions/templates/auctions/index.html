@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+    <h2 class="h-2">Active Listings</h2>
+    <div style="display:flex;margin:20px;flex-wrap:wrap;border-radius:30px" >
+        {% for list in listings %}
+        {% if not list.is_closed  %}
+        <div class="dis-li">
+        <h5 style="color:white">current bid value :{{ list.bid }}</h5>
+        <h5>Current Owner:{{list.bid.user}}</h5>
+        {% comment %} <h5>Bid is by:{{ list.owner }}</h5> {% endcomment %}
+        <h1 style="color:white">Title:{{list.title}}</h1>
+        {% comment %} <h5>Description:{{list.description}}</h5> {% endcomment %}
+        {% comment %} <h5>If you were intrested you can go through the lising </h5> {% endcomment %}
+        <h5 style="color:white">Bid placed by:{{list.owner}}</h5>
+        <img src={{list.url}} width=60% style="border-radius:10px">
+        <br>
+        {% comment %} We need to go to the watch list if we clicked the button {% endcomment %}
+        {% comment %} <a href= "{% url 'display_list' ,list.id %}">Go to Listing</a> {% endcomment %}
+        <a href="{% url 'display_listing' list.id %}" class="btn btn-primary" style="margin-top:10px;margin-bottom:10px">Go to listing</a>
+        {% comment %} <button type="button"class="btn btn-primary" onclick="{% url 'display_list' ,list.id %}" style="margin:15px">Watch-List</Button> {% endcomment %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% comment %} <h1>{{Listings.objects.all()}}</h1> {% endcomment %}
+{% endblock %}

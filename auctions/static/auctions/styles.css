@@ -1,0 +1,79 @@
+.tit
+{
+	text-align: center;
+	justify-content: center;
+	font-size: 100px;
+	color: white;
+	font-family: cursive;
+}
+
+body
+{
+	user-select: none;
+	/* display: flex; */
+	flex-wrap: wrap;
+	/* background-color: #81fbb8; */
+	/* color: white; */
+	background-image: url("https://images3.alphacoders.com/109/1091500.jpg");
+	background-size: cover;
+}
+.btn3
+{
+	color: white;padding-bottom: 5px;
+	justify-content: center;
+}
+.btn
+{
+	height: 30px;
+	margin-bottom: 5px;
+	text-align: center;
+	padding-bottom: 5px;
+}
+.llist
+{
+	justify-content: center;
+	text-align: center;
+}
+.cat
+{
+	color: white;
+}
+.nav
+{
+	text-align: center;
+	justify-content: center;
+}
+.nav-link
+{
+	text-decoration: none;
+}
+.nav-link:hover
+{
+	border: 2px solid white;
+	border-radius: 5px;
+	color: white;
+}
+.sign-in
+{
+	color: white;
+	margin-left: 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+.h-2
+{
+	margin-left: 15px;
+	color: white;
+	/* font-weight: bold; */
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.dis-li
+{
+	border-radius: 25px;
+	width:30%;text-align:center;border:2px solid black;margin:20px;
+
+}
+.dis-li:hover
+{
+	border-color: white ;
+}

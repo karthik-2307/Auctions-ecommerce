@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+<h2>Create_listing</h2>
+
+{% if message %}
+    <div>{{ message }}</div>
+{% endif %}
+<form action="{% url 'create_listing' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" class="form-control">
+    <div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" name="Description" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Url</label>
+        <input type="text" name="image_url" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Bid</label>
+        <input type="integer" name="bid" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Select a Category</label>
+        <select name="category" class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            {% comment %} option which is default selected  {% endcomment %}
+            <option value="Avenger">Avenger</option>
+            <option value="Sheild">Sheild</option>
+            <option value="Spy">Spy</option>
+            <option value="God">God</option>
+        </select>
+    </div>
+    <button type="submit" class="btn-primary">Submit</button>
+</form>
+{% endblock %}

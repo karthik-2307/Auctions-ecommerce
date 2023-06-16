@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html"%}
+{% block body %}
+<h2>Closed Listings</h2>
+<div style="display:flex;margin:20px">
+    {% for list in listings %}
+    {% if list.is_closed  %}
+    <div style="width:30%;text-align:center;border:2px solid black;margin:20px">
+    <h5>Bid value :{{ list.bid }}</h5>
+    {% comment %} <h5>Owner:{{list.bid.user}}</h5> {% endcomment %}
+    <h5>Status:solded to {{list.bid.user}}</h5>
+    <h1>Title:{{list.title}}</h1>
+    {% comment %} <h5>Description:{{list.description}}</h5> {% endcomment %}
+    <h5>If you were intrested you can go through the lising </h5>
+    <h5>Bid placed by:{{list.owner}}</h5>
+    <img src={{list.url}} width=60%>
+    <br>
+    {% comment %} We need to go to the watch list if we clicked the button {% endcomment %}
+    <a href="{% url 'display_listing' list.id %}" class="btn btn-primary">Go to listing</a>
+    {% comment %} <a href="{% url 'check_product' ,list.id %}" class="btn btn-primary">Check the product</a> {% endcomment %}
+    {% comment %} <button type="button"class="btn btn-primary" onclick="{% url 'display_list' ,list.id %}" style="margin:15px">Watch-List</Button> {% endcomment %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock%}
